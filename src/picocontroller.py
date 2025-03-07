@@ -1,5 +1,6 @@
-from machine import Pin, Timer
+from machine import Pin, Timer, I2C
 from time import sleep
+from ssd1306 import SSD1306_I2C
 
 RELAY_A_PIN = Pin(21, Pin.OUT)
 RELAY_B_PIN = Pin(20, Pin.OUT)
@@ -14,6 +15,11 @@ SW_B_PIN = Pin(7, Pin.IN, pull=Pin.PULL_UP)
 SW_C_PIN = Pin(8, Pin.IN, pull=Pin.PULL_UP)
 SW_D_PIN = Pin(9, Pin.IN, pull=Pin.PULL_UP)
 
+W = 128
+H = 64
+
+i2c = I2C(0, sda=Pin(4, pull=Pin.PULL_UP), scl=Pin(5, pull=Pin.PULL_UP))
+display = SSD1306_I2C(W, H, i2c, addr=0x3C)
 
 class Relay:
     """A Class for Solid State Relays on the MonkMakes Pico Controller board"""

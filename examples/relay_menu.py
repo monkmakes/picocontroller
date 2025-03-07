@@ -1,5 +1,5 @@
 from picocontroller import *
-from oledmenu import *
+from picocontrollergui import *
 
 relay_b_submenu_data =  [
     {'id' : 'relay_B_on', 'label' : 'On'},
