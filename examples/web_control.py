@@ -3,8 +3,8 @@ from network import WLAN, STA_IF
 from picocontroller import *
 from picocontrollergui import OLEDConsole
 
-ssid = 'Monk'      # CHANGE ME
-password = 'd4daaa7eda' # CHANGE ME
+ssid = 'ssid'      # CHANGE ME
+password = 'password' # CHANGE ME
 
 index_page = '''
 <!DOCTYPE html>
