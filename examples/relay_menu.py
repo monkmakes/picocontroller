@@ -1,5 +1,6 @@
 from picocontroller import *
-from picocontrollergui import *
+from picocontroller.gui import *
+from time import sleep
 
 relay_b_submenu_data =  [
     {'id' : 'relay_B_on', 'label' : 'On'},

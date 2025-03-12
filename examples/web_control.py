@@ -1,7 +1,7 @@
 from microdot import Microdot
 from network import WLAN, STA_IF
 from picocontroller import *
-from picocontrollergui import OLEDConsole
+from picocontroller.gui import OLEDConsole
 
 ssid = 'ssid'      # CHANGE ME
 password = 'password' # CHANGE ME

@@ -1,7 +1,7 @@
 from picocontroller import *
-from picocontrollergui import *
+from picocontroller.gui import *
 from time import sleep
-
+from machine import Timer
 
 buzzer = Buzzer()
 t = Timer()
@@ -15,11 +15,15 @@ mins = default_mins
 secs = default_secs
 is_running = False
 
+t.init(mode=Timer.PERIODIC, period=1000, callback=lambda t:update_time())
+
 def update_time():
     global mins, secs
+    if not is_running:
+        return
     if secs == 0:
         if mins == 0:
-            t.deinit()
+            stop_running()
             buzzer.on()
         else:
             secs = 59
@@ -31,12 +35,10 @@ def update_time():
 def start_running():
     global is_running
     is_running = True
-    t.init(mode=Timer.PERIODIC, period=1000, callback=lambda t:update_time())
     
 def stop_running():
     global is_running
     is_running = False
-    t.deinit()
     
 def update_display():
     time_display.draw(mins * 100 + secs)
