@@ -2,17 +2,17 @@ from machine import Pin
 from picocontroller import *
 from time import sleep
 
-import onewire
+import onewire # Prerequisite for the ds18x20 digital thermometer
 import ds18x20
 
-ONE_WIRE_PIN = 14
+ONE_WIRE_PIN = 14 # The pin to be connected to the DS18B20's data pin
 
 ow = onewire.OneWire(Pin(ONE_WIRE_PIN, pull=Pin.PULL_UP))
 ds = ds18x20.DS18X20(ow)
 
-relay = Relay_A
+relay = Relay_A # You could change this to a different relay
 
-MIN_T = 0
+MIN_T = 0  # Minimum set temperature 
 MAX_T = 40
 
 thermometer = None
@@ -36,7 +36,7 @@ def connect_thermometer():
     global thermometer
     try:
         devices = ds.scan()
-        thermometer = devices[0]
+        thermometer = devices[0] # You can connect multiple DS18B20s to the same pin [0] for the first and only in this example
     except:
         print("Couldn't detect thermometer - check wiring")
         
@@ -48,6 +48,7 @@ def read_temp():
 connect_thermometer()
 refresh_display(False)
 while True:
+    # Check to see if the temperature has falled below the threshold
     read_temp()
     if t < t_set:
         # power on if measured temp too low
@@ -56,6 +57,7 @@ while True:
     else:
         relay.off()
         refresh_display(False)
+    # Check for button presses
     if Button_A.was_pressed() and t_set > MIN_T:
         t_set -= 1
         refresh_display(False)

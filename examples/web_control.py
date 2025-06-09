@@ -3,9 +3,10 @@ from network import WLAN, STA_IF
 from picocontroller import *
 from picocontroller.gui import OLEDConsole
 
-ssid = 'ssid'      # CHANGE ME
+ssid = 'ssid'         # CHANGE ME
 password = 'password' # CHANGE ME
 
+# HTML to be sent to your browser
 index_page = '''
 <!DOCTYPE html>
 <html>
@@ -59,12 +60,14 @@ def connect_wifi(ssid, password):
 app = Microdot()  
 connect_wifi(ssid, password)
 
-@app.route('/')
+@app.route('/') # The root / webpage send the HTML and Javascript to the browser
 def index(request):
     return index_page, 400, {'Content-Type': 'text/html'}
 
-@app.route('/set-relay')
+@app.route('/set-relay') # handle web requests from the browser to control the relays
 def temp(request):
+    # example request /set-relay?relay=A&state=1
+    # turns relay A on.
     relay = request.args['relay']
     state = int(request.args['state'])
     console.print(relay + ' ' + str(state))
