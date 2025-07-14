@@ -10,6 +10,8 @@ RELAY_D_PIN = Pin(18, Pin.OUT)
 BUZZER_A_PIN = Pin(3, Pin.OUT)
 BUZZER_B_PIN = Pin(22, Pin.OUT)
 
+LOGO_LED_PIN_NO = 2
+
 SW_A_PIN = Pin(6, Pin.IN, pull=Pin.PULL_UP)
 SW_B_PIN = Pin(7, Pin.IN, pull=Pin.PULL_UP)
 SW_C_PIN = Pin(8, Pin.IN, pull=Pin.PULL_UP)
@@ -107,4 +109,14 @@ Button_B = Button(SW_B_PIN)
 Button_C = Button(SW_C_PIN)
 Button_D = Button(SW_D_PIN)
 
+# WARNING: Only control the Power/Logo LED using these functions. 
+# Using it as a regular GPIO output and setting the controlling pins 
+# output HIGH will connect the LED to a GPIO pin without a series resistor, 
+# which could damage your Pico and/or the LED.
+
+def power_LED_on():
+    Pin(LOGO_LED_PIN_NO, Pin.IN) # default pin on through 1k R to VCC
+
+def power_LED_off():
+    Pin(LOGO_LED_PIN_NO, Pin.OUT) # LED anode set to 0V
 
