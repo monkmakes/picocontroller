@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'picocontroller',         # How you named your package folder (MyLib)
   packages = ['picocontroller'],   # Chose the same as "name"
-  version = '0.5',      # Start with a small number and increase it with every change you make
+  version = '0.7',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'A module for the MonkMakes Pico Controller',   # Give a short description about your library
   author = 'Simon Monk',                   # Type in your name
